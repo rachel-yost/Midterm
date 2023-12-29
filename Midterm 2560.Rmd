@@ -2,9 +2,6 @@
 title: "R Notebook"
 output:
   pdf_document: default
-  html_notebook: default
-  html_document:
-    df_print: paged
 urlcolor: blue
     
 ---
@@ -317,8 +314,8 @@ ggplot(prescribing_overdose) +
   geom_line(aes(x=Date, y=deaths_per_100000, group=state.abb, 
                 color =fiveyrchange)) +
   labs(title = "Opioid Overdose Deaths Over Time per State by Change \n 
-       in Prescribing Rate of Opioids from 2016-2021", x = "Opioid Overdose 
-       Deaths per 100k", y = "Year") +
+       in Prescribing Rate of Opioids from 2016-2021", y = "Opioid Overdose 
+       Deaths per 100k", x = "Year") +
   theme_classic() +
   scale_color_discrete(name = "Change in Opioid \n Prescribing \n from 2016-2021", 
     breaks=c('Increased', 'Slightly Decreased', 'Moderately Decreased','Greatly Decreased')) +
@@ -326,7 +323,9 @@ ggplot(prescribing_overdose) +
         plot.title = element_text(family="Times", face="bold", size=13),
         axis.title.y = element_text(size = 10),
         axis.title.x = element_text(size = 10),
-        legend.title = element_text(size=10))
+        legend.title = element_text(size=10)) +
+  labs(caption = paste("*Deaths refers to the number of deaths in a 12 month 
+                       period ending at a specific date" ,sep="\n"))
 ```
 
 <br />
@@ -379,7 +378,7 @@ ggplot(prescribing_overdose2) +
   scale_fill_discrete(name = "Change in Opioid \n Prescribing \n from 2016-2021",    
     breaks=c('Increased', 'Slightly Decreased', 'Moderately Decreased','Greatly Decreased')) +
   labs(title = "Percent Change in Opioid Overdose Deaths from 2019 to 2022", 
-       x= " State", y= "Percent Change") +
+       x= " State", y= "Percent Increase") +
   theme(plot.title=element_text(family="Times", face="bold", size=15))
 
 ```
@@ -404,7 +403,7 @@ ggplot(overdoses_providers) +
   theme(plot.title=element_text(family="Times", face="bold", size=15),
         legend.title = element_text(size=10)) +
   labs(title = "Percent Change in Opioid Overdose Deaths from 2019 to 2022", 
-       x= " State", y= "Percent Change") +
+       x= " State", y= "Percent Increase") +
   scale_fill_continuous(name = "Treatment Providers \n per 100k")
 ```
 References:
